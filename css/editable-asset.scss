@@ -1,0 +1,110 @@
+@import 'variables';
+
+.editable-asset {
+    position: absolute;
+    margin: 0;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+
+    cursor: pointer;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    transform-origin: 50% 50%;
+
+    .asset {
+        position: absolute;
+    }
+
+    .buttons {
+        position: absolute;
+        transition: opacity .5s, border .5s;
+        opacity: 0;
+        border: 6px solid $black;
+        pointer-events: none;
+    }
+
+    button {
+        display: block;
+        position: absolute;
+        opacity: 0;
+        margin: -22.5px 0 0 -22.5px;
+        border-radius: 50%;
+        background-image: url('#{$frame}sk-frames-canvas.png');
+        background-size: 2500px;
+        width: 45px;
+        height: 45px;
+        color: $white;
+        font-size: 12px;
+        transform-origin: 22.5px 22.5px;
+
+        $left: 1666 2034 1666 2034;
+        $top:         0    343    343        0;
+
+        @for $i from 1 through 4 {
+            &:nth-child(#{$i}) {
+                top: 0;
+                left: 0;
+                background-position: (-1 * nth($left, $i) + px) (-1 * nth($top, $i) + px);
+                @if $i > 2 {
+                    top: 100%;
+                }
+                @if ($i % 2) == 0 {
+                    left: 100%;
+                }
+            }
+        }
+    }
+
+    &.ACTIVE {
+        z-index: 999999;
+        cursor: grab;
+        //scss-lint:disable VendorPrefix
+        cursor: -moz-grab;
+        //scss-lint:enable VendorPrefix
+
+        &::before {
+            z-index: 999999;
+        }
+
+        .buttons {
+            z-index: 1000000;
+
+            button {
+                opacity: 1;
+                pointer-events: auto;
+            }
+        }
+    }
+
+    &.DRAGGING {
+        cursor: grabbing;
+        //scss-lint:disable VendorPrefix
+        cursor: -moz-grabbing;
+        //scss-lint:enable VendorPrefix
+    }
+
+    &.INVALID {
+        .asset::before {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: $red-overlay;
+            width: 100%;
+            height: 100%;
+            content: '';
+        }
+    }
+}
+
+.canvas.ACTIVE {
+    .editable-asset {
+        .buttons {
+            opacity: 1;
+        }
+    }
+}

@@ -1,0 +1,48 @@
+@import 'variables';
+
+.scroll-area {
+    position: relative;
+    border: 0;
+    cursor: auto;
+    padding-right: 30px;
+    height: 100%;
+
+    .area {
+        height: 100%;
+        overflow: auto;
+    }
+
+    .scrollbar {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 30px;
+        height: 100%;
+
+        &::before {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: -4px;
+            border-radius: 5px;
+            background-color: $transparent-black;
+            width: 10px;
+            height: 100%;
+            content: '';
+        }
+    }
+
+    .scroller {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: -37px;
+
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+
+        width: 80px;
+        height: 100px;
+    }
+}

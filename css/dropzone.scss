@@ -1,0 +1,9 @@
+@import 'variables';
+
+.dropzone {
+    display: inline-block;
+    margin: 40px;
+    border: 2px solid $black;
+    width: 300px;
+    height: 300px;
+}

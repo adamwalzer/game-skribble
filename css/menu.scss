@@ -1,0 +1,219 @@
+@import 'variables';
+@import 'mixins';
+
+.menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: max-height .5s, padding .5s;
+    margin: 0;
+    padding: 140px 0 0;
+    height: 900px;
+    max-height: 900px;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    * {
+        z-index: 2;
+    }
+
+    > li {
+        display: block;
+        transition: margin .5s, max-height .5s;
+        margin-left: -260px;
+        max-height: 140px;
+        overflow: hidden;
+        list-style: none;
+
+        span {
+            display: block;
+            position: relative;
+            z-index: 2;
+            border-radius: 0 30px 30px 0;
+
+            background-image: url('#{$sprite}sk-btn-slidenav.png');
+            background-size: 2700px;
+
+            width: 410px;
+            height: 140px;
+            line-height: 70px;
+            color: transparent;
+            font-size: 0;
+        }
+
+        &.SELECTED,
+        &:hover {
+            margin-left: -2px;
+        }
+
+        $classes: messages images sounds effects send preview edit edit-right inbox reply;
+        $left:         452    452    452     452 2250    2250 1350       2250  1350  2250;
+        $top:           10    160    310     460    0     155    0        305   155   455;
+
+        @for $i from 1 through 10 {
+            &.#{nth($classes, $i)} span {
+                background-position: ((-1 * nth($left, $i)) + px) ((-1 * nth($top, $i)) + px);
+            }
+        }
+
+        &.messages {
+            .menu {
+                background-position: 0 -1000px;
+                height: 480px;
+            }
+        }
+
+        &.images {
+            .menu {
+                background-position: -1700px -1000px;
+            }
+
+            &.SELECTED {
+                margin-top: -80px;
+            }
+        }
+    }
+
+    .menu {
+        display: flex;
+        position: relative;
+        bottom: auto;
+        margin: -20px 20px 20px;
+        background-image: url('#{$frame}sk-frames-canvas.png');
+        background-size: 5100px;
+        padding-top: 0;
+        width: 340px;
+        max-height: 0;
+        list-style: none;
+        flex-direction: column;
+        justify-content: space-between;
+
+        li {
+            margin: 0;
+
+            &:nth-of-type(1) {
+                margin: 30px 0 0;
+            }
+
+            &:last-of-type {
+                margin: 0 0 44px;
+            }
+
+            span {
+                display: block;
+                margin-left: 34px;
+                border-radius: 0;
+                background-image: url('#{$sprite}sk-btn-catergorymenu.png');
+                background-repeat: no-repeat;
+                background-position: -10px -10px;
+                background-size: 600px;
+                width: 280px;
+                height: 84px;
+                text-align: center;
+                text-transform: uppercase;
+                line-height: 80px;
+                color: $black;
+                font-size: 40px;
+            }
+
+            &:hover span {
+                background-position: -310px -10px;
+                color: $white;
+            }
+        }
+    }
+
+    &.ACTIVE {
+        z-index: 3;
+
+        > li {
+            max-height: 0;
+
+            &.SELECTED {
+                max-height: 880px;
+
+                .menu {
+                    max-height: 740px;
+                }
+            }
+        }
+    }
+
+    &.recipient {
+        z-index: 3;
+        padding-top: 30px;
+        height: auto;
+
+        li {
+            position: relative;
+            margin-left: -370px;
+
+            &:hover {
+                margin-left: -2px;
+            }
+
+            span {
+                color: $white;
+                font-size: 36px;
+            }
+
+            > span {
+                background-image: url('#{$sprite}sk-btn-friend.png');
+                background-position: -500px -10px;
+                background-size: 1000px;
+                width: 465px;
+                height: 80px;
+
+                &:empty {
+                    background-position: 0 -120px;
+                }
+            }
+
+            .name {
+                float: right;
+                margin: 10px 100px 0 0;
+                background: none;
+                width: auto;
+                height: auto;
+                color: $white;
+            }
+
+            .profile-image {
+                position: absolute;
+                top: 17px;
+                right: 34px;
+                background-color: $white;
+                width: 50px;
+                height: 50px;
+            }
+        }
+    }
+
+    &.right-menu {
+        top: 50%;
+        left: 1445px;
+        transform: translateY(-50%);
+        z-index: 2;
+        padding: 0;
+        height: auto;
+        overflow: visible;
+
+        > li {
+            margin-left: 0;
+            max-height: 150px;
+
+            &.SELECTED {
+                margin-left: 0;
+            }
+
+            &:hover {
+                margin-left: -250px;
+            }
+
+            span {
+                border-radius: 30px 0 0 30px;
+                height: 150px;
+            }
+        }
+    }
+}

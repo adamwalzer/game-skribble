@@ -1,0 +1,28 @@
+$media: $media-server + 'games/skribble/';
+$sprite: $media + 'sprites-animations/';
+$image: $media + 'image-assets/';
+$frame: $media + 'frames/';
+$font: $media + 'fonts/';
+
+// colors
+$text-color: #000;
+$white: #fff;
+$black: #000;
+$green: #36a91c;
+$green-overlay: rgba(88, 189, 63, .92);
+$purple-overlay: rgba(120, 41, 187, .6);
+$red-overlay: rgba(250, 25, 25, .6);
+$blue: #50d2e7;
+$bright-blue: #00f;
+$yellow: #efc300;
+$error-red: #da1e29;
+$transparent-black: rgba(0, 0, 0, .7);
+$middle-transparent-black: rgba(0, 0, 0, .6);
+$more-transparent-black: rgba(0, 0, 0, .5);
+
+
+// font sizes
+$small:    18px;
+$medium: 23px;
+$large: 25px;
+$xl: 40px;

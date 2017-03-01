@@ -1,0 +1,9 @@
+{
+    "id": "skribble",
+    "version": 1,
+    "skoash": "1.1.3",
+    "dimensions": {
+        "width": 1600,
+        "height": 900
+    }
+}

@@ -1,0 +1,21 @@
+@import 'variables';
+
+.draggable {
+    position: relative;
+    border: 2px solid $bright-blue;
+    cursor: grab;
+    //scss-lint:disable VendorPrefix
+    cursor: -moz-grab;
+    //scss-lint:enable VendorPrefix
+
+    &.DRAGGING {
+        cursor: grabbing;
+        //scss-lint:disable VendorPrefix
+        cursor: -moz-grabbing;
+        //scss-lint:enable VendorPrefix
+    }
+
+    &.RETURN {
+        transition: transform .5s;
+    }
+}

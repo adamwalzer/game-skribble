@@ -1,0 +1,1583 @@
+@import 'variables';
+@import 'mixins';
+
+* {
+    box-sizing: border-box;
+}
+
+img.hidden {
+    display: none;
+}
+
+html,
+body,
+body > div,
+body > div > div {
+    margin: 0;
+    cursor: auto;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    user-select: none;
+    user-drag: none;
+
+    [class^=background-] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: opacity .5s;
+        opacity: 0;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+    }
+
+    @for $i from 1 through 6 {
+        .background-#{$i} {
+            background-image: url('#{$image}sk-bkg-#{$i}.png');
+        }
+    }
+
+    &.SCREEN-1,
+    &.SCREEN-menu,
+    &.SCREEN-read {
+        .background-1 {
+            opacity: 1;
+        }
+    }
+
+    &.SCREEN-canvas,
+    &.SCREEN-item-drawer,
+    &.SCREEN-preview {
+        .background-2 {
+            opacity: 1;
+        }
+    }
+
+    &.SCREEN-friend {
+        .background-3 {
+            opacity: 1;
+        }
+    }
+
+    &.SCREEN-send {
+        .background-4 {
+            opacity: 1;
+        }
+    }
+
+    &.SCREEN-inbox {
+        .background-5 {
+            opacity: 1;
+        }
+    }
+
+    &.SCREEN-sent {
+        .background-6 {
+            opacity: 1;
+        }
+    }
+
+    // hiding buttons for certain screens
+    &.SCREEN-1,
+    &.SCREEN-friend {
+        .game-menu .save,
+        .game-menu .create,
+        .menu.recipient {
+            display: none;
+        }
+    }
+
+    &.SCREEN-1 {
+        .game-menu .inbox {
+            display: none;
+        }
+    }
+
+    &.SCREEN-canvas,
+    &.SCREEN-send {
+        .game-menu .create {
+            display: none;
+        }
+    }
+
+    &.SCREEN-inbox,
+    &.SCREEN-sent {
+        .game-menu .save,
+        .game-menu .inbox,
+        .menu.recipient {
+            display: none;
+        }
+    }
+
+    &.SCREEN-read {
+        .game-menu .save,
+        .menu.recipient {
+            display: none;
+        }
+    }
+
+    &.SCREEN-menu {
+        .game-menu .save,
+        .menu.recipient {
+            display: none;
+        }
+    }
+
+    .game-menu .help {
+        display: none;
+    }
+}
+
+html {
+    font-family: 'CMWN', 'Source Sans Pro', 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+body > div > div {
+    position: relative;
+    margin: auto;
+    background-size: cover;
+    width: 1600px;
+    height: 900px;
+    color: $black;
+    font-size: 36px;
+}
+
+button {
+    margin: 0;
+    outline: none;
+    border: 0;
+
+    background-color: transparent;
+    background-image: url('#{$sprite}sk-btn-rounded.png');
+    background-position: left top;
+    background-size: 1950px;
+
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+
+    &.make {
+        background-position: 0 0;
+        width: 450px;
+        height: 210px;
+
+        &:hover {
+            background-position: -500px 0;
+        }
+    }
+
+    &.read {
+        background-position: 0 -240px;
+        width: 450px;
+        height: 210px;
+
+        &:hover {
+            background-position: -500px -240px;
+        }
+    }
+
+    &.select {
+        background-position: -996px -740px;
+        width: 360px;
+        height: 180px;
+
+        &:hover {
+            background-position: -1496px -740px;
+        }
+    }
+
+    &.continue {
+        background-position: -996px -1240px;
+        width: 360px;
+        height: 180px;
+
+        &:hover {
+            background-position: -1496px -1240px;
+        }
+    }
+
+    &.suggest {
+        background-position: -998px -500px;
+        width: 450px;
+        height: 200px;
+
+        &:hover {
+            background-position: -1498px -500px;
+        }
+    }
+
+    &.save-to-drafts {
+        background-position: 2px -1460px;
+        width: 450px;
+        height: 200px;
+
+        &:hover {
+            background-position: -498px -1460px;
+        }
+    }
+
+    &.cancel {
+        background-position: -996px -990px;
+        width: 360px;
+        height: 180px;
+
+        &:hover {
+            background-position: -1496px -990px;
+        }
+    }
+
+    &.change-friend {
+        background-position: 0 -750px;
+        width: 230px;
+        height: 100px;
+
+        &:hover {
+            background-position: -500px -750px;
+        }
+    }
+
+    &.create-another {
+        background-position: -995px 0;
+        width: 460px;
+        height: 210px;
+
+        &:hover {
+            background-position: -1495px 0;
+        }
+    }
+
+    &.inbox {
+        background-position: -995px -250px;
+        width: 460px;
+        height: 210px;
+
+        &:hover {
+            background-position: -1495px -250px;
+        }
+    }
+
+    &.quit-yes,
+    &.yes {
+        background-position: 0 -1000px;
+        width: 230px;
+        height: 100px;
+
+        &:hover {
+            background-position: -500px -1000px;
+        }
+    }
+
+    &.quit-no,
+    &.no {
+        background-position: 0 -1250px;
+        width: 230px;
+        height: 100px;
+
+        &:hover {
+            background-position: -500px -1250px;
+        }
+    }
+
+    &.next-screen,
+    &.prev-screen {
+        width: 160px;
+        height: 120px;
+    }
+
+    &.next-screen {
+        background-position: -240px 840px;
+
+        &:hover {
+            background-position: -240px 1352px;
+        }
+    }
+
+    &.prev-screen {
+        background-position: -30px 840px;
+
+        &:hover {
+            background-position: -30px 1352px;
+        }
+    }
+
+    &.close-reveal {
+        background-position: -450px 840px;
+        width: 55px;
+        height: 50px;
+
+        &.ENABLED:hover {
+            background-position: -450px 1352px;
+        }
+    }
+}
+
+.game-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+
+    button {
+        float: left;
+        margin: 5px;
+
+        background-image: url('#{$sprite}sk-btn-topnav.png');
+        background-size: 400px;
+
+        cursor: pointer;
+        width: 65px;
+        height: 65px;
+
+        $classes: save create inbox help close;
+
+        @for $i from 1 through 5 {
+            &.#{nth($classes, $i)} {
+                $left: 70 - (80 * $i);
+
+                background-position: ($left + px) -10px;
+
+                &:hover {
+                    background-position: ($left + px) -89px;
+                }
+            }
+        }
+    }
+}
+
+body.DEMO .reveal-component .items li div .close-reveal {
+    opacity: 1;
+    cursor: pointer;
+
+    &:hover {
+        background-position: -225px 676px;
+    }
+}
+
+h2 {
+    font-size: 40px;
+}
+
+h3 {
+    margin: 0;
+    font-size: 30px;
+}
+
+p {
+    margin: 0;
+    font-size: 28px;
+}
+
+// preload game assets
+#asset-bin {
+    display: none;
+}
+
+.canvas-src { display: none; }
+
+#ios-splash:not(.OPEN) {
+    z-index: -1;
+}
+
+.screen {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transition: opacity 1s, z-index 0s 1s;
+    opacity: 0;
+    margin-top: -450px;
+    width: 1600px;
+    height: 900px;
+    overflow: hidden;
+
+    &:not(.OPEN) {
+        z-index: -1;
+    }
+
+    &:not(.COMPLETE) {
+        button {
+            &.next-screen {
+                cursor: auto;
+            }
+        }
+    }
+}
+
+.screen.OPEN {
+    transition: opacity 1s, z-index 0s;
+    opacity: 1;
+}
+
+.screen.READY {
+    display: block;
+}
+
+.screen.LEAVE {
+    opacity: 0;
+}
+
+.screen .next-screen,
+.screen .prev-screen {
+    display: block;
+    position: absolute;
+    bottom: 1%;
+
+    z-index: 2;
+}
+
+.screen .next-screen {
+    right: 0;
+    transform: rotate(-180deg);
+    transition: opacity 1s, transform 1s;
+    opacity: 0;
+    margin-right: 5px;
+}
+
+.screen.GATED .next-screen {
+    opacity: 0;
+    z-index: -1;
+    cursor: auto;
+}
+
+.pl-game.DEMO .screen .next-screen,
+.screen.COMPLETE .next-screen {
+    transform: rotate(0deg);
+    opacity: 1;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.pl-game.MENU-quit .screen {
+    &:not(#quit):not(#save) {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+.screen .prev-screen {
+    left: 0;
+    margin-left: 5px;
+
+}
+
+// the following css is specific to this game
+
+.header {
+    margin: 0 auto;
+    background-image: url('#{$sprite}sk-headers.png');
+    background-size: 3800px;
+    width: 900px;
+    height: 140px;
+}
+
+#title {
+    &.LEAVE {
+        transform: translateX(100%);
+    }
+
+    &.LEAVING {
+        .next-screen {
+            transform: rotate(360deg);
+        }
+    }
+
+    img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        width: 90%;
+    }
+
+    .next-screen {
+        margin: 0 90px 70px 0;
+        background-image: url('#{$image}skribble-play-01.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+        width: 400px;
+        height: 180px;
+
+        &:hover {
+            background-image: url('#{$image}skribble-hover.png');
+        }
+    }
+}
+
+#canvas {
+    &::after {
+        display: block;
+        position: absolute;
+        right: 0;
+        bottom: -80px;
+        transition: none;
+        z-index: 1;
+        background: none;
+        width: 800px;
+        height: 800px;
+        content: '';
+    }
+
+    button {
+        color: $black;
+    }
+
+    .editable-asset {
+        button {
+            color: $white;
+        }
+    }
+
+    .right-menu {
+        display: none;
+        transition: opacity .5s;
+        opacity: 1;
+    }
+
+    .reveal {
+        li {
+            z-index: 3;
+            width: 1600px;
+            height: 900px;
+
+            img {
+                position: absolute;
+                right: 30px;
+                bottom: 30px;
+            }
+
+            .bubble {
+                position: absolute;
+                top: 10px;
+                left: 690px;
+
+                background-image: url('#{$frame}sk-frames-speechbubbles.png');
+                background-repeat: no-repeat;
+                background-position: -1010px -20px;
+                background-size: 1500px;
+
+                padding: 120px 50px 140px 20px;
+                text-align: center;
+                font-size: 40px;
+            }
+        }
+    }
+
+    &.HAS-ASSETS {
+        .right-menu {
+            display: block;
+        }
+    }
+
+    &.INVALID {
+        .right-menu {
+            opacity: .6;
+            pointer-events: none;
+        }
+    }
+
+    &.OPEN {
+        &::after {
+            transition: opacity .5s 2s, z-index 0s 2.5s;
+            opacity: 0;
+            z-index: -1;
+            background: url('#{$sprite}joyful-otter-2.gif') no-repeat;
+            background-size: contain;
+        }
+    }
+
+    &.REPLAY {
+        &::after {
+            display: none;
+        }
+    }
+}
+
+#friends {
+    .header {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .otter-container {
+        position: absolute;
+        bottom: 40px;
+        left: 20px;
+
+        .bubble {
+            position: absolute;
+            background-image: url('#{$frame}sk-frames-speechbubbles.png');
+            background-repeat: no-repeat;
+            background-size: 1500px;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        &.One {
+            img {
+                transform: scale3d(-1, 1, 1);
+                margin-left: -160px;
+                width: 460px;
+            }
+
+            .bubble {
+                top: -260px;
+                left: -30px;
+                background-position: -70px -540px;
+                padding: 60px 50px 110px 70px;
+                width: 350px;
+            }
+        }
+
+        &.Two {
+            bottom: -120px;
+
+            img {
+                margin-top: -280px;
+                margin-left: -310px;
+                width: 1000px;
+            }
+
+            .bubble {
+                top: -260px;
+                left: -20px;
+                background-position: -70px -540px;
+                padding: 110px 30px 150px 35px;
+            }
+        }
+    }
+
+    .item-drawer-container {
+        display: block;
+        margin: 0 auto 0 270px;
+        background-position: -10px 0;
+        padding: 280px 210px 50px 110px;
+        width: 1120px;
+    }
+
+    .item-drawer {
+        li {
+            margin: 0 5px 20px;
+            background-image: url('#{$sprite}sk-btn-selectfriend.png');
+            background-repeat: no-repeat;
+            background-position: 0 0;
+            background-size: 400px;
+            padding: 15px 2px 15px 10px;
+            width: 175px;
+            height: 270px;
+
+            &::before {
+                display: none;
+            }
+
+            span {
+                display: block;
+                font-size: 22px;
+
+                &.name {
+                    color: $green;
+                }
+
+                &.description {
+                    color: $black;
+                }
+            }
+
+            &:hover,
+            &.SELECTED {
+                border-color: transparent;
+                background-position: -200px 0;
+
+                span {
+
+                    &.name {
+                        color: $white;
+                    }
+
+                    &.description {
+                        color: $blue;
+                    }
+                }
+            }
+        }
+    }
+
+    .buttons {
+        position: absolute;
+        top: 50%;
+        right: 30px;
+        transform: translateY(-50%);
+    }
+
+    .suggest-friends-buttons {
+        margin-top: -20px;
+        width: 108%;
+
+        .continue {
+            background-position: 2px -500px;
+            width: 460px;
+            height: 200px;
+
+            &:hover {
+                background-position: -498px -500px;
+            }
+        }
+
+        button {
+            margin: 20px auto;
+        }
+    }
+
+    button {
+        display: block;
+        color: $black;
+    }
+
+    > div > div:not(.goto-send) {
+        .save-to-drafts {
+            display: none;
+        }
+    }
+
+    .goto-send {
+        .continue {
+            display: none;
+        }
+    }
+}
+
+#menu {
+    .otter {
+        position: absolute;
+        bottom: -140px;
+        left: -50px;
+    }
+
+    .bubble {
+        position: absolute;
+        top: 80px;
+        left: 450px;
+
+        background-image: url('#{$frame}sk-frames-speechbubbles.png');
+        background-repeat: no-repeat;
+        background-position: -380px -380px;
+        background-size: 1125px;
+
+        padding: 60px 30px 100px 35px;
+        text-align: center;
+        font-size: 44px;
+    }
+
+    .buttons {
+        position: absolute;
+        top: 50%;
+        left: 75%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+
+    button {
+        display: block;
+        color: $black;
+    }
+}
+
+#item-drawer {
+    .buttons {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .continue {
+        display: none;
+    }
+
+    .scroll-area {
+        height: 670px;
+    }
+
+    button {
+        display: block;
+        color: $black;
+    }
+
+    .name {
+        display: block;
+        position: absolute;
+        bottom: 5px;
+        left: 0;
+        width: 100%;
+    }
+}
+
+#inbox {
+    button {
+        display: block;
+        color: $black;
+    }
+
+    .selectable-reveal {
+        background-image: url('#{$frame}sk-frames-general.png');
+        background-position: -3500px 0;
+        background-size: 7000px;
+        width: 1300px;
+        height: 860px;
+    }
+
+    .selectable {
+        display: flex;
+        margin: 0;
+        padding: 0 0 0 70px;
+        height: 80px;
+        list-style: none;
+
+        li {
+            margin-right: 6px;
+            background-image: url('#{$sprite}sk-btn-inbox.png');
+            background-position: 0 -82px;
+            background-size: 684px;
+            width: 138px;
+
+            @for $i from 1 through 5 {
+                $left: 136.5 - 136.5 * $i;
+
+                &:nth-of-type(#{$i}) {
+                    background-position: ($left + px) -82px;
+
+                    &.SELECTED {
+                        background-position: ($left + px) -1px;
+                    }
+                }
+            }
+        }
+    }
+
+    .reveal {
+        margin: 0;
+        padding: 20px;
+        width: 100%;
+        height: 750px;
+        list-style: none;
+
+        > div,
+        li {
+            height: 100%;
+
+            &.empty {
+                min-height: 720px;
+            }
+        }
+
+        ul li > div {
+            height: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+
+            ul {
+                height: auto;
+                min-height: 100%;
+            }
+        }
+
+        ul {
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+        }
+
+        .close-reveal {
+            display: none;
+        }
+    }
+
+    .item-drawer {
+        flex-direction: column;
+        justify-content: flex-start;
+
+        img {
+            &[src=''] {
+                display: none;
+            }
+        }
+
+        li {
+            position: relative;
+            opacity: 1;
+            margin: 0;
+            background-color: transparent;
+            background-image: url('#{$sprite}sk-btn-messages.png');
+            background-position: -30px -414px;
+            background-size: 2600px;
+            height: 160px;
+
+            .status {
+                display: none;
+            }
+
+            &::before {
+                display: none;
+            }
+
+            &.SELECTED {
+                border-color: transparent;
+            }
+
+            &:hover {
+                background-position: -1328px -414px;
+            }
+
+            &.UNREAD {
+                background-position: -30px -30px;
+
+                &:hover {
+                    background-position: -1328px -30px;
+                }
+            }
+
+            &.SENT {
+                background-position: -30px -220px;
+
+                &:hover {
+                    background-position: -1328px -220px;
+                }
+
+                .status {
+                    display: inline-block;
+                    top: 45%;
+                    right: 220px;
+                    transform: translateY(-50%);
+
+                    &.ERROR {
+                        color: $error-red;
+                    }
+                }
+            }
+
+            &.DRAFT {
+                margin-bottom: 20px;
+                background-image: none;
+                width: 360px;
+                height: 250px;
+
+                .thumbnail {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    background-size: contain;
+                    padding-bottom: 66.25%;
+                    width: 100%;
+                    height: 0;
+
+                    img {
+                        top: 50%;
+                        left: 50%;
+                        transform: translateX(-50%) translateY(-50%);
+                        margin: 0;
+                        background-color: transparent;
+                        width: auto;
+                        max-width: 80%;
+                        height: auto;
+                        max-height: 80%;
+                    }
+                }
+
+                .timestamp {
+                    display: flex;
+                    top: auto;
+                    right: auto;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    justify-content: space-between;
+
+                    .date,
+                    .time {
+                        display: inline-block;
+                        font-size: 34px;
+                    }
+                }
+            }
+
+            &.empty {
+                background: none;
+                height: 100%;
+
+                span {
+                    display: block;
+                    top: 50%;
+                    left: 0;
+                    transform: translateY(-50%);
+                    width: 100%;
+                    text-align: center;
+                    line-height: 1.2;
+                    font-size: 50px;
+                }
+            }
+        }
+
+        &.SAVED {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        img {
+            position: absolute;
+            top: 22px;
+            left: 160px;
+            background-color: $white;
+            width: 92px;
+            height: 92px;
+        }
+
+        span {
+            position: absolute;
+            text-shadow: 3px 3px 1px $middle-transparent-black;
+            line-height: 40px;
+            color: $white;
+            font-size: 32px;
+
+            &.username {
+                top: 50%;
+                left: 270px;
+                margin-top: -35px;
+                line-height: 64px;
+                font-size: 64px;
+
+                &.long {
+                    font-size: 48px;
+                }
+            }
+
+            &.timestamp {
+                display: inline-block;
+                top: 50%;
+                right: 26px;
+                margin-top: -50px;
+            }
+
+            &.date,
+            &.time {
+                display: block;
+                position: relative;
+                text-align: center;
+            }
+        }
+    }
+}
+
+#send {
+    .character {
+        position: absolute;
+
+        .otter {
+            margin: -20px 0 0 -220px;
+            width: 840px;
+        }
+
+        .bubble {
+            position: absolute;
+            top: -80px;
+            left: 110px;
+
+            background-image: url('#{$frame}sk-frames-speechbubbles.png');
+            background-repeat: no-repeat;
+            background-position: -70px -540px;
+            background-size: 1500px;
+
+            padding: 70px 30px 150px 38px;
+            text-align: center;
+            font-size: 36px;
+        }
+    }
+
+    .header {
+        margin-top: 10px;
+        background: none;
+        width: auto;
+        height: auto;
+        text-align: center;
+
+        span {
+            display: inline-block;
+            height: 100px;
+            vertical-align: middle;
+            line-height: 100px;
+        }
+    }
+
+    .your-message-to,
+    .is-ready {
+        background-image: url('#{$sprite}sk-headers.png');
+        background-repeat: no-repeat;
+        background-size: 3800px;
+    }
+
+    .your-message-to {
+        background-position: -2850px 0;
+        width: 750px;
+    }
+
+    .username {
+        text-shadow: 3px 3px 1px $middle-transparent-black;
+        color: $white;
+        font-size: 54px;
+    }
+
+    .is-ready {
+        background-position: -2840px -250px;
+        width: 700px;
+    }
+
+    .change-friend {
+        transform: translateX(240px);
+        margin-left: -230px;
+        vertical-align: middle;
+    }
+
+    .gift {
+        margin: 0 auto;
+        background-image: url('#{$frame}sk-frames-messagebox.png');
+        background-repeat: no-repeat;
+        background-position: -40px -80px;
+        background-size: 2600px;
+        width: 670px;
+        height: 620px;
+    }
+}
+
+#sent {
+    .character {
+        margin: 0 auto;
+        background-image: url('#{$image}otter-static-4.png');
+        background-position: 52px 0;
+        background-size: 700px;
+        width: 400px;
+        height: 480px;
+    }
+
+    .header {
+        margin-top: -35px;
+        background-image: url('#{$frame}sk-frames-general.png');
+        background-repeat: no-repeat;
+        background-position: -4825px 0;
+        background-size: 6450px;
+        padding: 40px 0;
+        width: auto;
+        height: auto;
+        text-align: center;
+
+        span {
+            display: inline-block;
+            height: 60px;
+            vertical-align: middle;
+            line-height: 60px;
+            color: $white;
+            font-size: 54px;
+        }
+    }
+
+    .your-message-to {
+        margin-right: 20px;
+    }
+
+    .buttons {
+        text-align: center;
+    }
+
+    .create-another,
+    .inbox {
+        margin: 20px;
+    }
+
+}
+
+#preview {
+    .left-menu {
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        padding: 0;
+        height: auto;
+
+        > li {
+            height: 150px;
+            max-height: 150px;
+
+            &.SELECTED {
+                margin-left: -260px;
+            }
+
+            &:hover {
+                margin-left: -2px;
+            }
+        }
+    }
+}
+
+.skribble-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    .canvas,
+    img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+
+        animation-duration: 4s;
+        animation-delay: .5s;
+        animation-fill-mode: forwards;
+
+        opacity: 0;
+        border-radius: 80px;
+        background-color: $white;
+        width: 1280px;
+        transform-origin: top left;
+    }
+
+    .box {
+        position: relative;
+
+        animation-duration: 3s;
+        animation-delay: .5s;
+        animation-fill-mode: forwards;
+
+        opacity: 1;
+        z-index: 1;
+        margin: 100px auto;
+
+        background-image: url('#{$frame}sk-frames-messagebox.png');
+        background-repeat: no-repeat;
+        background-position: -40px -80px;
+        background-size: 2600px;
+
+        width: 670px;
+        height: 620px;
+    }
+
+    .sparkles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        animation-duration: 5s;
+        animation-delay: 1.5s;
+        animation-fill-mode: forwards;
+        opacity: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+
+        div {
+            position: absolute;
+            transform: rotate(0deg);
+            transition: transform 1s, opacity 1s;
+            width: 100px;
+            height: 100px;
+            text-align: left;
+            line-height: 100px;
+
+            &::before {
+                color: $yellow;
+                content: '\02736';
+            }
+
+            $delays: 0s .5s 1s .25s 1.25s .75s;
+
+            @for $i from 1 through 40 {
+                &:nth-of-type(#{$i}) {
+                    $left: (-10 * $i) % 85 + 5;
+                    $top: (-15 * $i) % 80 + 10;
+
+                    top: percentage($top / 100);
+                    left: percentage($left / 100);
+
+                    @if $left > 45 {
+                        animation: flyright 1.5s infinite linear;
+                    } @else {
+                        animation: flyleft 1.5s infinite linear;
+                    }
+
+                    animation-delay: nth($delays, ($i % 6) + 1);
+                }
+            }
+        }
+    }
+
+    &.STARTED {
+        .canvas,
+        img {
+            animation-name: skribble-zoom;
+        }
+
+        .box {
+            animation-name: box-explode;
+        }
+
+        .sparkles {
+            animation-name: flash-effect;
+        }
+    }
+}
+
+#read {
+    .menu.recipient.sender {
+        display: block;
+
+        &.HIDE {
+            display: none;
+
+            ~ .right-menu {
+                display: none;
+            }
+        }
+    }
+
+    .left-menu {
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        padding: 0;
+        height: auto;
+
+        > li {
+            height: 150px;
+            max-height: 150px;
+
+            &.SELECTED {
+                margin-left: -260px;
+            }
+
+            &:hover {
+                margin-left: -2px;
+            }
+        }
+    }
+}
+
+#flip {
+    h2 {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        margin: -80px 0 0;
+        width: 100%;
+        text-align: center;
+        color: $white;
+        font-weight: normal;
+    }
+}
+
+#quit {
+    transform: translateX(-100%);
+    transition: transform .25s;
+
+    .frame {
+        margin-top: -320px;
+        background-image: url('#{$frame}sk-frames-speechbubbles.png');
+        background-repeat: no-repeat;
+        background-position: -1130px -20px;
+        background-size: 1700px;
+        padding: 120px 60px 140px 40px;
+        text-align: center;
+        font-size: 40px;
+
+        &::after {
+            display: block;
+            position: absolute;
+            top: 400px;
+            left: 500px;
+
+            background-image: url('#{$image}otter-static-greeting-one.png');
+            background-repeat: no-repeat;
+            background-position: top left;
+            background-size: contain;
+
+            width: 600px;
+            height: 400px;
+            content: '';
+        }
+
+        h2 {
+            margin: 0;
+        }
+
+        button {
+            margin: 20px 10px;
+        }
+    }
+
+    &.OPEN {
+        transform: translateX(0%);
+    }
+}
+
+#save {
+    transform: translateX(-100%);
+    transition: transform .25s;
+
+    .frame {
+        margin-top: -320px;
+        margin-left: -680px;
+
+        background-image: url('#{$frame}sk-frames-speechbubbles.png');
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        background-size: 1700px;
+
+        padding: 120px 90px 180px 130px;
+        text-align: center;
+        font-size: 40px;
+
+        &::after {
+            display: block;
+            position: absolute;
+            top: 400px;
+            left: -100px;
+
+            background-image: url('#{$image}otter-static-peering-over-text.png');
+            background-repeat: no-repeat;
+            background-position: top left;
+            background-size: contain;
+
+            width: 600px;
+            height: 400px;
+            content: '';
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 52px;
+        }
+
+        button {
+            margin: 20px 10px 20px 260px;
+            background-image: url('#{$frame}sk-frames-canvas.png');
+            background-position: -1666px 0;
+            background-size: 2500px;
+            width: 45px;
+            height: 45px;
+        }
+    }
+
+    &.OPEN {
+        transform: translateX(0%);
+        z-index: 3;
+    }
+}
+
+#collisionWarning {
+    background-color: $green-overlay;
+
+    &.OPEN {
+        z-index: 3;
+    }
+
+    .frame > * {
+        display: block;
+        margin: 0 auto;
+    }
+
+    button {
+        background-repeat: no-repeat;
+        background-position: 0 0;
+    }
+
+    .toggle-collision-warning {
+        background-image: url('#{$sprite}spritesheet-donotshow.png');
+        background-position: 0 -16px;
+        background-size: 840px;
+        width: 840px;
+        height: 155px;
+
+        &.active {
+            background-position: 0 -130px;
+        }
+    }
+
+    .close-collision-warning {
+        background-image: url('#{$sprite}spritesheet-ok.png');
+        background-size: 278px;
+        width: 278px;
+        height: 238px;
+
+        &:active,
+        &:hover,
+        &:focus {
+            background-position: 0 -278px;
+        }
+    }
+
+    .otter {
+        position: absolute;
+        bottom: -170px;
+        left: -200px;
+        z-index: -1;
+        width: 900px;
+    }
+}
+
+#limitWarning {
+    background-color: $purple-overlay;
+
+    &.OPEN {
+        z-index: 3;
+    }
+
+    .screen-content {
+        > div {
+            position: absolute;
+            top: 170px;
+            left: 420px;
+            text-align: center;
+            text-shadow: $black 5px 5px 0;
+            line-height: 75px;
+            letter-spacing: -.7px;
+            color: $white;
+            font-family: 'CMWN';
+            font-size: 70px;
+        }
+    }
+
+    .otter {
+        position: absolute;
+        top: -160px;
+        left: -400px;
+        z-index: 1;
+        width: 1300px;
+    }
+
+    .sign {
+        position: absolute;
+        top: 0;
+        left: 260px;
+    }
+
+    button {
+        position: absolute;
+        top: 510px;
+        left: 795px;
+
+        background-image: url($media-server + '027b30f0d279ef41cd30eff22323051c.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+
+        width: 300px;
+        height: 300px;
+
+        &:hover {
+            background-image: url($media-server + 'a479811171cf084bf86af4eac1f6dc28.png');
+        }
+    }
+}

@@ -1,0 +1,30 @@
+@import 'variables';
+
+.canvas {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    border-radius: 80px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    padding: 0;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+}
+
+.canvas-container {
+    position: absolute;
+    top: 60px;
+    left: 126px;
+    z-index: 1;
+    background-image: url('#{$frame}sk-frames-canvas.png');
+    background-repeat: no-repeat;
+    background-size: 4080px;
+    padding: 30px;
+
+    &.BACKGROUND {
+        background-image: none;
+    }
+}

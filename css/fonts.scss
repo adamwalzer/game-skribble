@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'CMWN';
+    src: url('#{$media-server}fonts/CMWN_Jade.eot'); /* IE9 Compat Modes */
+    src: url('#{$media-server}fonts/CMWN_Jade.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('#{$media-server}fonts/CMWN_Jade.woff') format('woff'), /* Modern Browsers */
+         url('#{$media-server}fonts/CMWN_Jade.ttf')    format('truetype'), /* Safari, Android, iOS */
+         url('#{$media-server}fonts/CMWN_Jade.svg#4012903f3d164196860fdbc893b3e032') format('svg'); /* Legacy iOS */
+    font-style: normal;
+    font-weight: 400;
+}

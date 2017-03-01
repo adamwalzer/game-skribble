@@ -1,0 +1,22 @@
+.reveal {
+    ul {
+        position: relative;
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        position: absolute;
+        transition: opacity .5s;
+        opacity: 0;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        list-style: none;
+
+        &.OPEN {
+            opacity: 1;
+            z-index: 1;
+        }
+    }
+}
