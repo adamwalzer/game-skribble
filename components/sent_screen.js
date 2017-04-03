@@ -15,8 +15,8 @@ const text = {
 };
 
 class SentScreen extends skoash.Screen {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             load: true,

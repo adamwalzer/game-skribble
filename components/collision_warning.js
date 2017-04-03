@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 
 class CollisionWarning extends skoash.Screen {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.cancel = this.cancel.bind(this);
         this.toggle = this.toggle.bind(this);

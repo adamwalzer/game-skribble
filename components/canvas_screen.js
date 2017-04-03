@@ -6,8 +6,8 @@ import Selectable from 'shared/components/selectable/0.1';
 import classNames from 'classnames';
 
 class CanvasScreen extends skoash.Screen {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             load: true,

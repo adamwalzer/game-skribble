@@ -3,8 +3,8 @@ import ItemDrawer from 'shared/components/item_drawer/0.1.js';
 const DEFAULT_PROFILE_IMAGE = 'https://changemyworldnow.com/ff50fa329edc8a1d64add63c839fe541.png';
 
 class FriendScreen extends skoash.Screen {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             load: true,

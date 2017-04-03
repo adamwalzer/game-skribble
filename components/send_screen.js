@@ -11,8 +11,8 @@ const classNameText = {
 };
 
 class SendScreen extends skoash.Screen {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state.load = true;
         this.state.recipient = {};

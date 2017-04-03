@@ -35,8 +35,8 @@ const draftsEmptyMessage = (
 
 
 class InboxScreen extends skoash.Screen {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             load: true,

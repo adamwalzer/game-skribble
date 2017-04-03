@@ -1,8 +1,8 @@
 import ItemDrawer from '../../shared/components/item_drawer/0.1.js';
 
 class ItemDrawerScreen extends skoash.Screen {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             load: true,
